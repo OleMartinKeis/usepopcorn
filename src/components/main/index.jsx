@@ -49,7 +49,10 @@ function Main() {
         <div>
             <main className="main">
                 <LeftPanel tempMovieData={tempMovieData} />
-                <RightPanel tempWatchedData={tempWatchedData} />
+                <RightPanel
+                    tempWatchedData={tempWatchedData}
+                    tempMovieData={tempMovieData}
+                />
             </main>
         </div>
     );
