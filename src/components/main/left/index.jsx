@@ -12,7 +12,7 @@ function LeftPanel({ tempMovieData }) {
                 >
                     {isOpen1 ? "–" : "+"}
                 </button>
-                {isOpen1 && <MovieList />}
+                {isOpen1 && <MovieList tempMovieData={tempMovieData} />}
             </div>
         </div>
     );
