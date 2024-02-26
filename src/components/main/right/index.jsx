@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Summary from "./summary";
 import WatchedMovieList from "./watched";
 
-function RightPanel({ tempWatchedData, tempMovieData }) {
+function RightPanel({ tempWatchedData }) {
     const [isOpen2, setIsOpen2] = useState(true);
     const [watched, setWatched] = useState(tempWatchedData);
     return (
