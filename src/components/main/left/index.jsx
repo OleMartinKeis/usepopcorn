@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MovieList from "./movieList";
 
-function LeftPanel({ tempMovieData, movies }) {
+function LeftPanel({ children }) {
     const [isOpen1, setIsOpen1] = useState(true);
     return (
         <div>
@@ -12,9 +12,7 @@ function LeftPanel({ tempMovieData, movies }) {
                 >
                     {isOpen1 ? "–" : "+"}
                 </button>
-                {isOpen1 && (
-                    <MovieList tempMovieData={tempMovieData} movies={movies} />
-                )}
+                {isOpen1 && children}
             </div>
         </div>
     );

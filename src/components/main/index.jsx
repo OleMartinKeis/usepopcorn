@@ -23,17 +23,10 @@ const tempWatchedData = [
     },
 ];
 
-function Main({ movies, tempMovieData }) {
+function Main({ children, tempMovieData }) {
     return (
         <div>
-            <main className="main">
-                <LeftPanel tempMovieData={tempMovieData} movies={movies} />
-                <RightPanel
-                    tempWatchedData={tempWatchedData}
-                    movies={movies}
-                    tempMovieData={tempMovieData}
-                />
-            </main>
+            <main className="main">{children}</main>
         </div>
     );
 }

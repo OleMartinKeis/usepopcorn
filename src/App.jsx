@@ -4,6 +4,29 @@ import Logo from "./components/nav/logo";
 import Search from "./components/nav/search";
 import Results from "./components/nav/results";
 import Main from "./components/main";
+import LeftPanel from "./components/main/left";
+import RightPanel from "./components/main/right";
+import MovieList from "./components/main/left/movieList";
+const tempWatchedData = [
+    {
+        imdbID: "tt1375666",
+        Title: "Inception",
+        Year: "2010",
+        Poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+        runtime: 148,
+        imdbRating: 8.8,
+        userRating: 10,
+    },
+    {
+        imdbID: "tt0088763",
+        Title: "Back to the Future",
+        Year: "1985",
+        Poster: "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+        runtime: 116,
+        imdbRating: 8.5,
+        userRating: 9,
+    },
+];
 
 const tempMovieData = [
     {
@@ -37,7 +60,15 @@ export default function App() {
                 <Results movies={movies} />
             </Navbar>
 
-            <Main movies={movies} tempMovieData={tempMovieData} />
+            <Main tempMovieData={tempMovieData}>
+                <LeftPanel tempMovieData={tempMovieData} movies={movies}>
+                    <MovieList tempMovieData={tempMovieData} movies={movies} />
+                </LeftPanel>
+                <RightPanel
+                    tempWatchedData={tempWatchedData}
+                    tempMovieData={tempMovieData}
+                />
+            </Main>
         </>
     );
 }
