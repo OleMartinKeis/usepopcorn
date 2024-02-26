@@ -1,10 +1,10 @@
 import React from "react";
 
-function Results() {
+function Results({ movies }) {
     return (
         <div>
             <p className="num-results">
-                Found <strong>X</strong> results
+                Found <strong>{movies.length}</strong> results
             </p>
         </div>
     );

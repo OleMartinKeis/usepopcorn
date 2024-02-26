@@ -3,12 +3,12 @@ import Search from "./search";
 import Logo from "./logo";
 import Results from "./results";
 
-function Navbar() {
+function Navbar({ movies }) {
     return (
         <nav className="nav-bar">
             <Logo />
             <Search />
-            <Results />
+            <Results movies={movies} />
         </nav>
     );
 }
