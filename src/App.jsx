@@ -54,20 +54,17 @@ export default function App() {
 
     return (
         <>
-            <Navbar tempMovieData={tempMovieData}>
+            <Navbar>
                 <Logo />
                 <Search />
                 <Results movies={movies} />
             </Navbar>
 
-            <Main tempMovieData={tempMovieData}>
-                <LeftPanel tempMovieData={tempMovieData} movies={movies}>
-                    <MovieList tempMovieData={tempMovieData} movies={movies} />
+            <Main>
+                <LeftPanel>
+                    <MovieList movies={movies} />
                 </LeftPanel>
-                <RightPanel
-                    tempWatchedData={tempWatchedData}
-                    tempMovieData={tempMovieData}
-                />
+                <RightPanel tempWatchedData={tempWatchedData} />
             </Main>
         </>
     );
