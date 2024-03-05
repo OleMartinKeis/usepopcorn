@@ -4,9 +4,11 @@ import Logo from "./components/nav/logo";
 import Search from "./components/nav/search";
 import Results from "./components/nav/results";
 import Main from "./components/main";
-import LeftPanel from "./components/main/left";
-import RightPanel from "./components/main/right";
+import WatchedMovieList from "./components/main/right/watched/index";
+import Summary from "./components/main/right/summary/index";
 import MovieList from "./components/main/left/movieList";
+import Box from "./components/main/left";
+
 const tempWatchedData = [
     {
         imdbID: "tt1375666",
@@ -51,6 +53,7 @@ const tempMovieData = [
 
 export default function App() {
     const [movies, setMovies] = useState(tempMovieData);
+    const [watched, setWatched] = useState(tempWatchedData);
 
     return (
         <>
@@ -61,10 +64,14 @@ export default function App() {
             </Navbar>
 
             <Main>
-                <LeftPanel>
+                <Box>
                     <MovieList movies={movies} />
-                </LeftPanel>
-                <RightPanel tempWatchedData={tempWatchedData} />
+                </Box>
+                <Box>
+                    <Summary watched={watched} />
+
+                    <WatchedMovieList watched={watched} />
+                </Box>
             </Main>
         </>
     );

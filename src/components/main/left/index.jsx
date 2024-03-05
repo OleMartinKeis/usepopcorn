@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import MovieList from "./movieList";
 
-function LeftPanel({ children }) {
-    const [isOpen1, setIsOpen1] = useState(true);
+function Box({ children }) {
+    const [isOpen, setIsOpen] = useState(true);
     return (
         <div>
             <div className="box">
                 <button
                     className="btn-toggle"
-                    onClick={() => setIsOpen1((open) => !open)}
+                    onClick={() => setIsOpen((open) => !open)}
                 >
-                    {isOpen1 ? "–" : "+"}
+                    {isOpen ? "–" : "+"}
                 </button>
-                {isOpen1 && children}
+                {isOpen && children}
             </div>
         </div>
     );
 }
 
-export default LeftPanel;
+export default Box;
