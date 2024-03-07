@@ -11,14 +11,17 @@ const starContainerStyle = {
     gap: "4px",
 };
 
-const textStyle = {
-    lineHeight: "1",
-    margin: "0",
-};
-
-function StarRating({ maxRating = 5 }) {
+function StarRating({ maxRating = 5, color = "#fcc419", size = 48 }) {
     const [rating, setRating] = useState(0);
     const [tempRating, setTempRating] = useState(0);
+
+    const textStyle = {
+        lineHeight: "1",
+        margin: "0",
+        color,
+        fontSize: `${size / 1.5}px`,
+    };
+
     function handleRating(rating) {
         setRating(rating);
     }
@@ -35,6 +38,8 @@ function StarRating({ maxRating = 5 }) {
                         }
                         onHoverIn={() => setTempRating(i + 1)}
                         onHoverOut={() => setTempRating(0)}
+                        color={color}
+                        size={size}
                     />
                 ))}
             </div>
