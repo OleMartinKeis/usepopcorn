@@ -14,13 +14,7 @@ function RightPanel({ tempWatchedData }) {
                 >
                     {isOpen2 ? "–" : "+"}
                 </button>
-                {isOpen2 && (
-                    <>
-                        <Summary watched={watched} />
-
-                        <WatchedMovieList watched={watched} />
-                    </>
-                )}
+                {isOpen2 && <></>}
             </div>
         </div>
     );
