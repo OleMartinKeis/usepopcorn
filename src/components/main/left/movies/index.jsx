@@ -3,7 +3,7 @@ import React from "react";
 function Movies({ movie }) {
     return (
         <div>
-            <li key={movie.imdbID}>
+            <li>
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
                 <div>
