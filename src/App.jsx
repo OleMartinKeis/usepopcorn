@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/nav";
 import Logo from "./components/nav/logo";
 import Search from "./components/nav/search";
@@ -51,9 +51,25 @@ const tempMovieData = [
     },
 ];
 
+const KEY = "dfc8db77";
+
 export default function App() {
-    const [movies, setMovies] = useState(tempMovieData);
-    const [watched, setWatched] = useState(tempWatchedData);
+    const [movies, setMovies] = useState([]);
+    const [watched, setWatched] = useState([]);
+    const query = "interstellar";
+
+    //Fetches API results by search filtering and takes the response in setMovies to display
+    useEffect(function () {
+        async function fetchMovies() {
+            const res = await fetch(
+                `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            );
+            const data = await res.json();
+            setMovies(data.Search);
+            console.log(data.Search);
+        }
+        fetchMovies();
+    }, []);
 
     return (
         <>
