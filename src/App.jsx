@@ -60,7 +60,8 @@ export default function App() {
     const [watched, setWatched] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-    const query = "isdadadsasdadas";
+    const [query, setQuery] = useState("");
+    const tempQuery = "interstellar";
 
     //Fetches API results by search filtering and takes the response in setMovies to display
 
@@ -70,7 +71,7 @@ export default function App() {
                 //Added a loading state in case of slow network
                 setIsLoading(true);
                 const res = await fetch(
-                    `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+                    `http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`
                 );
                 //if response is not OK throw error
                 if (!res.ok)
