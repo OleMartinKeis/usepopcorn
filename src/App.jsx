@@ -64,14 +64,23 @@ export default function App() {
 
     useEffect(function () {
         async function fetchMovies() {
-            //Added a loading state in case of slow network
-            setIsLoading(true);
-            const res = await fetch(
-                `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-            );
-            const data = await res.json();
-            setMovies(data.Search);
-            setIsLoading(false);
+            try {
+                //Added a loading state in case of slow network
+                setIsLoading(true);
+                const res = await fetch(
+                    `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+                );
+                //if response is not OK throw error
+                if (!res.ok)
+                    throw new Error(
+                        "Something went wrong with fetching movies"
+                    );
+                const data = await res.json();
+                setMovies(data.Search);
+                setIsLoading(false);
+            } catch (err) {
+                console.error(err);
+            }
         }
         fetchMovies();
     }, []);
