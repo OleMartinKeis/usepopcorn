@@ -9,6 +9,7 @@ import Summary from "./components/main/right/summary/index";
 import MovieList from "./components/main/left/movieList";
 import Box from "./components/main/left";
 import Loader from "./components/loader";
+import ErrorMesage from "./components/error";
 
 const tempWatchedData = [
     {
@@ -58,6 +59,7 @@ export default function App() {
     const [movies, setMovies] = useState([]);
     const [watched, setWatched] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
     const query = "interstellar";
 
     //Fetches API results by search filtering and takes the response in setMovies to display
@@ -77,9 +79,11 @@ export default function App() {
                     );
                 const data = await res.json();
                 setMovies(data.Search);
-                setIsLoading(false);
             } catch (err) {
-                console.error(err);
+                console.error(err.message);
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchMovies();
@@ -95,7 +99,14 @@ export default function App() {
 
             <Main>
                 <Box>
-                    {isLoading ? <Loader /> : <MovieList movies={movies} />}
+                    {/* If loading display Loader */}
+                    {isLoading && <Loader />}
+
+                    {/*no isLoading and no error then display movies list*/}
+                    {!isLoading && !error && <MovieList movies={movies} />}
+
+                    {/* If there is a error, display error message */}
+                    {error && <ErrorMesage message={error} />}
                 </Box>
                 <Box>
                     <Summary watched={watched} />
