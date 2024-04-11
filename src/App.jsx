@@ -60,7 +60,7 @@ export default function App() {
     const [watched, setWatched] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-    const query = "interstellar";
+    const query = "isdadadsasdadas";
 
     //Fetches API results by search filtering and takes the response in setMovies to display
 
@@ -77,7 +77,11 @@ export default function App() {
                     throw new Error(
                         "Something went wrong with fetching movies"
                     );
+
                 const data = await res.json();
+                //if Response come back with a False string, throw error
+                if (data.Response === "False")
+                    throw new Error("Movie not found");
                 setMovies(data.Search);
             } catch (err) {
                 console.error(err.message);
