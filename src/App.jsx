@@ -92,6 +92,13 @@ export default function App() {
                     setIsLoading(false);
                 }
             }
+
+            /* Adds a default movie */
+            if (!query.length < 3) {
+                setMovies([]);
+                setError("");
+                return;
+            }
             fetchMovies();
         },
         [query]
