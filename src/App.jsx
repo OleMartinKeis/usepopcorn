@@ -61,8 +61,10 @@ export default function App() {
     const query = "interstellar";
 
     //Fetches API results by search filtering and takes the response in setMovies to display
+
     useEffect(function () {
         async function fetchMovies() {
+            //Added a loading state in case of slow network
             setIsLoading(true);
             const res = await fetch(
                 `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
