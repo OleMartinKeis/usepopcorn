@@ -61,44 +61,48 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [query, setQuery] = useState("");
-    const tempQuery = "interstellar";
 
     //Fetches API results by search filtering and takes the response in setMovies to display
-
-    useEffect(function () {
-        async function fetchMovies() {
-            try {
-                //Added a loading state in case of slow network
-                setIsLoading(true);
-                const res = await fetch(
-                    `http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`
-                );
-                //if response is not OK throw error
-                if (!res.ok)
-                    throw new Error(
-                        "Something went wrong with fetching movies"
+    useEffect(
+        function () {
+            async function fetchMovies() {
+                try {
+                    //Added a loading state in case of slow network
+                    setIsLoading(true);
+                    /*Resets Error everytime we type in new search */
+                    setError("");
+                    const res = await fetch(
+                        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
                     );
+                    //if response is not OK throw error
+                    if (!res.ok)
+                        throw new Error(
+                            "Something went wrong with fetching movies"
+                        );
 
-                const data = await res.json();
-                //if Response come back with a False string, throw error
-                if (data.Response === "False")
-                    throw new Error("Movie not found");
-                setMovies(data.Search);
-            } catch (err) {
-                console.error(err.message);
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
+                    const data = await res.json();
+                    //if Response come back with a False string, throw error
+                    if (data.Response === "False")
+                        throw new Error("Movie not found");
+                    setMovies(data.Search);
+                } catch (err) {
+                    console.error(err.message);
+                    setError(err.message);
+                } finally {
+                    setIsLoading(false);
+                }
             }
-        }
-        fetchMovies();
-    }, []);
+            fetchMovies();
+        },
+        [query]
+    );
 
     return (
         <>
             <Navbar>
                 <Logo />
-                <Search />
+                {/*Added props to search to get results based on search */}
+                <Search query={query} setQuery={setQuery} />
                 <Results movies={movies} />
             </Navbar>
 
