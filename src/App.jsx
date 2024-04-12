@@ -10,6 +10,7 @@ import MovieList from "./components/main/left/movieList";
 import Box from "./components/main/left";
 import Loader from "./components/loader";
 import ErrorMesage from "./components/error";
+import SelectMovie from "./components/main/selectMovie";
 
 const tempWatchedData = [
     {
@@ -61,6 +62,7 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [query, setQuery] = useState("");
+    const [selectedId, setSelectedId] = useState("tt1375666");
 
     //Fetches API results by search filtering and takes the response in setMovies to display
     useEffect(
@@ -93,7 +95,7 @@ export default function App() {
                 }
             }
 
-            /* Adds a default movie */
+            /* if less than three characters in the search field, dont search */
             if (!query.length < 3) {
                 setMovies([]);
                 setError("");
@@ -101,6 +103,7 @@ export default function App() {
             }
             fetchMovies();
         },
+        /* Query as a dependency for the useEffect */
         [query]
     );
 
@@ -125,9 +128,14 @@ export default function App() {
                     {error && <ErrorMesage message={error} />}
                 </Box>
                 <Box>
-                    <Summary watched={watched} />
-
-                    <WatchedMovieList watched={watched} />
+                    {selectedId ? (
+                        <SelectMovie selectedId={selectedId} />
+                    ) : (
+                        <>
+                            <Summary watched={watched} />
+                            <WatchedMovieList watched={watched} />
+                        </>
+                    )}
                 </Box>
             </Main>
         </>
