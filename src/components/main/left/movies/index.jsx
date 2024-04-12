@@ -1,9 +1,13 @@
 import React from "react";
 
-function Movies({ movie }) {
+function Movies({ movie, setSelectedId }) {
+    function handleSelectMovie(id) {
+        setSelectedId(id);
+    }
+
     return (
         <div>
-            <li>
+            <li onClick={() => handleSelectMovie(movie.imdbID)}>
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
                 <div>
