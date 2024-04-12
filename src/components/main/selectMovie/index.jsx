@@ -8,7 +8,9 @@ function SelectMovie({ selectedId, setSelectedId }) {
 
     return (
         <div className="details">
-            <button className="btn-back" onClick={handleCloseMovie}></button>
+            <button className="btn-back" onClick={handleCloseMovie}>
+                &larr;
+            </button>
             {selectedId}
         </div>
     );
