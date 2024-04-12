@@ -51,7 +51,7 @@ const tempMovieData = [
     },
 ];
 
-export default function App() {
+export default function Appv2() {
     const [movies, setMovies] = useState(tempMovieData);
     const [watched, setWatched] = useState(tempWatchedData);
 
