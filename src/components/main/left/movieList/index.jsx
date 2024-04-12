@@ -4,7 +4,7 @@ import Movies from "../movies";
 function MovieList({ movies, setSelectedId }) {
     return (
         <div>
-            <ul className="list">
+            <ul className="list list-movies">
                 {movies?.map((movie) => (
                     <Movies
                         movie={movie}
