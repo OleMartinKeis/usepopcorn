@@ -7,6 +7,7 @@ function Movies({ movie, setSelectedId }) {
 
     return (
         <div>
+            {/* Gets a movies ID on click */}
             <li onClick={() => handleSelectMovie(movie.imdbID)}>
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
