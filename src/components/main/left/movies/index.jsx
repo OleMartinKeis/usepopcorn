@@ -1,8 +1,8 @@
 import React from "react";
 
-function Movies({ movie, setSelectedId }) {
+function Movies({ movie, setSelectedId, selectedId }) {
     function handleSelectMovie(id) {
-        setSelectedId(id);
+        setSelectedId((selectedId) => (id === selectedId ? null : id));
     }
 
     return (

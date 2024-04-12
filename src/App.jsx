@@ -82,6 +82,7 @@ export default function App() {
                     {/*no isLoading and no error then display movies list*/}
                     {!isLoading && !error && (
                         <MovieList
+                            selectedId={selectedId}
                             movies={movies}
                             setSelectedId={setSelectedId}
                         />
