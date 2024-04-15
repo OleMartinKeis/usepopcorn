@@ -43,6 +43,11 @@ function SelectMovie({ selectedId, setSelectedId }) {
                     <p>
                         {released} &bull; {runtime}
                     </p>
+                    <p>{genre}</p>
+                    <p>
+                        <span>⭐</span>
+                        {imdbRating} IMDb rating
+                    </p>
                 </div>
             </header>
             <button className="btn-back" onClick={handleCloseMovie}>
