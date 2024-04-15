@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import StarRating from "../rating";
 import Loader from "../../loader";
 
-function SelectMovie({ selectedId, setSelectedId }) {
+function SelectMovie({ selectedId, setSelectedId, onAddWatched }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const KEY = "dfc8db77";
@@ -22,6 +22,19 @@ function SelectMovie({ selectedId, setSelectedId }) {
     /* Removes the selected movie */
     function handleCloseMovie() {
         setSelectedId(null);
+    }
+
+    /*Adds a movie to watched list */
+    function handleAdd() {
+        const newWatchedMovie = {
+            imdbID: selectedId,
+            title,
+            year,
+            poster,
+            imdbRating: Number(imdbRating),
+            runtime: Number(runtime.split(" ")[0]),
+        };
+        onAddWatched(newWatchedMovie);
     }
 
     /*API call to get movies based on ID. Runs each time the component renders */
@@ -65,6 +78,9 @@ function SelectMovie({ selectedId, setSelectedId }) {
                     <section>
                         <div className="rating">
                             <StarRating maxRating={10} size={24} />
+                            <button className="btn-add" onClick={handleAdd}>
+                                + Add to list
+                            </button>
                         </div>
                         <p>
                             <em>{plot}</em>
