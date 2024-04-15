@@ -7,12 +7,14 @@ function SelectMovie({
     setSelectedId,
     onAddWatched,
     onCloseMovie,
+    watched,
 }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [userRating, setUserRating] = useState("");
     const KEY = "dfc8db77";
     const {
+        imdbID,
         Title: title,
         Year: year,
         Poster: poster,
@@ -24,6 +26,8 @@ function SelectMovie({
         Director: director,
         Genre: genre,
     } = movie;
+
+    const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
 
     /*Adds a movie to watched list */
     function handleAdd() {
@@ -85,15 +89,25 @@ function SelectMovie({
 
                     <section>
                         <div className="rating">
-                            <StarRating
-                                maxRating={10}
-                                size={24}
-                                onSetRating={setUserRating}
-                            />
-                            {userRating > 0 && (
-                                <button className="btn-add" onClick={handleAdd}>
-                                    + Add to list
-                                </button>
+                            {!isWatched ? (
+                                <>
+                                    {" "}
+                                    <StarRating
+                                        maxRating={10}
+                                        size={24}
+                                        onSetRating={setUserRating}
+                                    />
+                                    {userRating > 0 && (
+                                        <button
+                                            className="btn-add"
+                                            onClick={handleAdd}
+                                        >
+                                            + Add to list
+                                        </button>
+                                    )}
+                                </>
+                            ) : (
+                                <p>You rated this movie</p>
                             )}
                         </div>
                         <p>

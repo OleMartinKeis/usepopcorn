@@ -108,6 +108,7 @@ export default function App() {
                             selectedId={selectedId}
                             setSelectedId={setSelectedId}
                             onAddWatched={handleAddWatched}
+                            watched={watched}
                         />
                     ) : (
                         <>
