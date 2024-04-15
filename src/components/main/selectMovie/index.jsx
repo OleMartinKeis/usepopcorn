@@ -10,6 +10,7 @@ function SelectMovie({
 }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [userRating, setUserRating] = useState("");
     const KEY = "dfc8db77";
     const {
         Title: title,
@@ -33,10 +34,13 @@ function SelectMovie({
             poster,
             imdbRating: Number(imdbRating),
             runtime: Number(runtime.split(" ")[0]),
+            userRating,
         };
         onAddWatched(newWatchedMovie);
+        onCloseMovie();
     }
 
+    /* Closes the movie on the right box */
     function handleClose() {
         onCloseMovie(onCloseMovie);
     }
@@ -81,10 +85,16 @@ function SelectMovie({
 
                     <section>
                         <div className="rating">
-                            <StarRating maxRating={10} size={24} />
-                            <button className="btn-add" onClick={handleAdd}>
-                                + Add to list
-                            </button>
+                            <StarRating
+                                maxRating={10}
+                                size={24}
+                                onSetRating={setUserRating}
+                            />
+                            {userRating > 0 && (
+                                <button className="btn-add" onClick={handleAdd}>
+                                    + Add to list
+                                </button>
+                            )}
                         </div>
                         <p>
                             <em>{plot}</em>
@@ -94,7 +104,7 @@ function SelectMovie({
                     </section>
                 </>
             )}
-            <button className="btn-back" onClick={onCloseMovie}>
+            <button className="btn-back" onClick={handleClose}>
                 &larr;
             </button>
         </div>
