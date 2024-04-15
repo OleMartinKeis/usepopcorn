@@ -16,7 +16,6 @@ function SelectMovie({ selectedId, setSelectedId }) {
         Director: director,
         Genre: genre,
     } = movie;
-    console.log(title, year);
 
     /* Removes the selected movie */
     function handleCloseMovie() {
