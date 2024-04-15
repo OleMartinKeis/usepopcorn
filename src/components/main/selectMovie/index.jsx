@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import StarRating from "../rating";
 
 function SelectMovie({ selectedId, setSelectedId }) {
     const [movie, setMovie] = useState({});
@@ -52,6 +53,9 @@ function SelectMovie({ selectedId, setSelectedId }) {
             </header>
 
             <section>
+                <div className="rating">
+                    <StarRating maxRating={10} size={24} />
+                </div>
                 <p>
                     <em>{plot}</em>
                 </p>
