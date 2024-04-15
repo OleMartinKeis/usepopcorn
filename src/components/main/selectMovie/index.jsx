@@ -36,6 +36,15 @@ function SelectMovie({ selectedId, setSelectedId }) {
 
     return (
         <div className="details">
+            <header>
+                <img src={poster} alt={`Poster of ${movie} movie`} />
+                <div className="details-overview">
+                    <h2>{title}</h2>
+                    <p>
+                        {released} &bull; {runtime}
+                    </p>
+                </div>
+            </header>
             <button className="btn-back" onClick={handleCloseMovie}>
                 &larr;
             </button>
