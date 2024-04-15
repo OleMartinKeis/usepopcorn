@@ -22,6 +22,10 @@ export default function App() {
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
 
+    function handleAddWatched(movie) {
+        setWatched((watched) => [...watched, movie]);
+    }
+
     //Fetches API results by search filtering and takes the response in setMovies to display
     useEffect(
         function () {
@@ -96,6 +100,7 @@ export default function App() {
                         <SelectMovie
                             selectedId={selectedId}
                             setSelectedId={setSelectedId}
+                            onAddWatched={handleAddWatched}
                         />
                     ) : (
                         <>
