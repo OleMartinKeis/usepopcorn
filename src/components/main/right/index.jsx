@@ -4,7 +4,7 @@ import WatchedMovieList from "./watched";
 
 function RightPanel({ tempWatchedData }) {
     const [isOpen2, setIsOpen2] = useState(true);
-    const [watched, setWatched] = useState(tempWatchedData);
+
     return (
         <div>
             <div className="box">
