@@ -6,7 +6,7 @@ function SelectMovie({
     selectedId,
     setSelectedId,
     onAddWatched,
-    handleCloseMovie,
+    onCloseMovie,
 }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +35,10 @@ function SelectMovie({
             runtime: Number(runtime.split(" ")[0]),
         };
         onAddWatched(newWatchedMovie);
+    }
+
+    function handleClose() {
+        onCloseMovie(onCloseMovie);
     }
 
     /*API call to get movies based on ID. Runs each time the component renders */
@@ -90,7 +94,7 @@ function SelectMovie({
                     </section>
                 </>
             )}
-            <button className="btn-back" onClick={handleCloseMovie}>
+            <button className="btn-back" onClick={onCloseMovie}>
                 &larr;
             </button>
         </div>
