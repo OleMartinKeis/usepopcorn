@@ -22,8 +22,14 @@ export default function App() {
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
 
+    /*Creates a new array if a watched movie is added */
     function handleAddWatched(movie) {
         setWatched((watched) => [...watched, movie]);
+    }
+
+    /* Removes the selected movie */
+    function handleCloseMovie() {
+        setSelectedId(null);
     }
 
     //Fetches API results by search filtering and takes the response in setMovies to display
@@ -98,6 +104,7 @@ export default function App() {
                 <Box>
                     {selectedId ? (
                         <SelectMovie
+                            onCloseMovie={handleCloseMovie}
                             selectedId={selectedId}
                             setSelectedId={setSelectedId}
                             onAddWatched={handleAddWatched}

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import StarRating from "../rating";
 import Loader from "../../loader";
 
-function SelectMovie({ selectedId, setSelectedId, onAddWatched }) {
+function SelectMovie({
+    selectedId,
+    setSelectedId,
+    onAddWatched,
+    handleCloseMovie,
+}) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const KEY = "dfc8db77";
@@ -18,11 +23,6 @@ function SelectMovie({ selectedId, setSelectedId, onAddWatched }) {
         Director: director,
         Genre: genre,
     } = movie;
-
-    /* Removes the selected movie */
-    function handleCloseMovie() {
-        setSelectedId(null);
-    }
 
     /*Adds a movie to watched list */
     function handleAdd() {
