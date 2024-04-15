@@ -50,10 +50,18 @@ function SelectMovie({ selectedId, setSelectedId }) {
                     </p>
                 </div>
             </header>
+
+            <section>
+                <p>
+                    <em>{plot}</em>
+                </p>
+                <p>Starring: {actors}</p>
+                <p>Directed by {director}</p>
+            </section>
+
             <button className="btn-back" onClick={handleCloseMovie}>
                 &larr;
             </button>
-            {selectedId}
         </div>
     );
 }
