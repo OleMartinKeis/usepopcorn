@@ -54,7 +54,7 @@ export default function App() {
             }
 
             /* if less than three characters in the search field, dont search */
-            if (query.length < 3) {
+            if (query.length <= 3) {
                 setMovies([]);
                 setError("");
                 return;
