@@ -8,15 +8,15 @@ function RightMovieList({ movie, onDeleteWatched }) {
             <div>
                 <p>
                     <span>⭐️</span>
-                    <span>{movie.imdbRating}</span>
+                    <span>{movie.imdbRating.toFixed(2)}</span>
                 </p>
                 <p>
                     <span>🌟</span>
-                    <span>{movie.userRating}</span>
+                    <span>{movie.userRating.toFixed(2)}</span>
                 </p>
                 <p>
                     <span>⏳</span>
-                    <span>{movie.runtime} min</span>
+                    <span>{movie.runtime.toFixed(2)} min</span>
                 </p>
                 <button
                     className="btn-delete"
