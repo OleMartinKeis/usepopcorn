@@ -51,6 +51,21 @@ function SelectMovie({
     function handleClose() {
         onCloseMovie(onCloseMovie);
     }
+    /*Listens for a esc btn down, then closes selected movie. Also removes the Event listener after execution for memory performance */
+    useEffect(
+        function () {
+            function callback(e) {
+                if (e.code === "Escape") {
+                    onCloseMovie();
+                }
+            }
+            document.addEventListener("keydown", callback);
+            return function () {
+                document.removeEventListener("keydown", callback);
+            };
+        },
+        [onCloseMovie]
+    );
 
     /*API call to get movies based on ID. Runs each time the component renders */
     useEffect(
