@@ -111,7 +111,8 @@ function SelectMovie({
                                 </>
                             ) : (
                                 <p>
-                                    You rated this movie {watchedUserRating}⭐
+                                    You rated this movie {watchedUserRating}
+                                    <span> ⭐</span>
                                 </p>
                             )}
                         </div>
