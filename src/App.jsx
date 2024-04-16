@@ -32,6 +32,11 @@ export default function App() {
         setSelectedId(null);
     }
 
+    /*Deletes the already watched movie */
+    function handleDeleteWatched(id) {
+        setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+    }
+
     //Fetches API results by search filtering and takes the response in setMovies to display
     useEffect(
         function () {
@@ -109,11 +114,15 @@ export default function App() {
                             setSelectedId={setSelectedId}
                             onAddWatched={handleAddWatched}
                             watched={watched}
+                            setWatched={setWatched}
                         />
                     ) : (
                         <>
                             <Summary watched={watched} />
-                            <WatchedMovieList watched={watched} />
+                            <WatchedMovieList
+                                watched={watched}
+                                onDeleteWatched={handleDeleteWatched}
+                            />
                         </>
                     )}
                 </Box>

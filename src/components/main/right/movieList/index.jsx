@@ -1,6 +1,6 @@
 import React from "react";
 
-function RightMovieList({ movie }) {
+function RightMovieList({ movie, onDeleteWatched }) {
     return (
         <li>
             <img src={movie.poster} alt={`${movie.title} poster`} />
@@ -18,6 +18,12 @@ function RightMovieList({ movie }) {
                     <span>⏳</span>
                     <span>{movie.runtime} min</span>
                 </p>
+                <button
+                    className="btn-delete"
+                    onClick={() => onDeleteWatched(movie.imdbID)}
+                >
+                    X
+                </button>
             </div>
         </li>
     );
