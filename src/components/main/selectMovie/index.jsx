@@ -69,6 +69,15 @@ function SelectMovie({
         [selectedId]
     );
 
+    /*Changes the title of the webpage to the movie title */
+    useEffect(
+        function () {
+            if (!title) return;
+            document.title = `Movie | ${title}`;
+        },
+        [title]
+    );
+
     return (
         <div className="details">
             {isLoading ? (
