@@ -80,6 +80,8 @@ export default function App() {
                 setError("");
                 return;
             }
+
+            handleCloseMovie();
             fetchMovies();
             /*Everytime there is a new fetch request our keypress will cancel it until the last keypress  */
             return function () {
