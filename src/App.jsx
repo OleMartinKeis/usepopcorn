@@ -16,12 +16,16 @@ const KEY = "dfc8db77";
 
 export default function App() {
     const [movies, setMovies] = useState([]);
-    const [watched, setWatched] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
 
+    /* This gets the watched array from localstorage or creats an empty one if localstorage is empty */
+    const [watched, setWatched] = useState(function () {
+        const storedValue = JSON.parse(localStorage.getItem("watched")) || [];
+        return storedValue;
+    });
     /*Creates a new array if a watched movie is added */
     function handleAddWatched(movie) {
         setWatched((watched) => [...watched, movie]);
