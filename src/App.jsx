@@ -25,6 +25,8 @@ export default function App() {
     /*Creates a new array if a watched movie is added */
     function handleAddWatched(movie) {
         setWatched((watched) => [...watched, movie]);
+        /*Stores a new array of watched movies list in local storage to persist through reloads */
+        localStorage.setItem("watched", JSON.stringify([...watched, movie]));
     }
 
     /* Removes the selected movie */
