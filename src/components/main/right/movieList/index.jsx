@@ -16,7 +16,7 @@ function RightMovieList({ movie, onDeleteWatched }) {
                 </p>
                 <p>
                     <span>⏳</span>
-                    <span>{movie.runtime.toFixed(2)} min</span>
+                    <span>{movie.runtime} min</span>
                 </p>
                 <button
                     className="btn-delete"
