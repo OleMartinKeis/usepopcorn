@@ -25,8 +25,6 @@ export default function App() {
     /*Creates a new array if a watched movie is added */
     function handleAddWatched(movie) {
         setWatched((watched) => [...watched, movie]);
-        /*Stores a new array of watched movies list in local storage to persist through reloads */
-        localStorage.setItem("watched", JSON.stringify([...watched, movie]));
     }
 
     /* Removes the selected movie */
@@ -38,6 +36,15 @@ export default function App() {
     function handleDeleteWatched(id) {
         setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
     }
+
+    /* Updates everytime the watched array gets updated*/
+    useEffect(
+        function () {
+            /*Stores a new array of watched movies list in local storage to persist through reloads */
+            localStorage.setItem("watched", JSON.stringify(watched));
+        },
+        [watched]
+    );
 
     //Fetches API results by search filtering and takes the response in setMovies to display
     useEffect(
