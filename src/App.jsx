@@ -12,18 +12,15 @@ import Loader from "./components/loader";
 import ErrorMesage from "./components/error";
 import SelectMovie from "./components/main/selectMovie";
 import useMovies from "./useMovies";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 export default function App() {
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
 
     const { movies, error, isLoading } = useMovies(query);
+    const [watched, setWatched] = useLocalStorageState([], "watched");
 
-    /* This gets the watched array from localstorage or creats an empty one if localstorage is empty */
-    const [watched, setWatched] = useState(function () {
-        const storedValue = JSON.parse(localStorage.getItem("watched")) || [];
-        return storedValue;
-    });
     /*Creates a new array if a watched movie is added */
     function handleAddWatched(movie) {
         setWatched((watched) => [...watched, movie]);
@@ -38,15 +35,6 @@ export default function App() {
     function handleDeleteWatched(id) {
         setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
     }
-
-    /* Updates everytime the watched array gets updated*/
-    useEffect(
-        function () {
-            /*Stores a new array of watched movies list in local storage to persist through reloads */
-            localStorage.setItem("watched", JSON.stringify(watched));
-        },
-        [watched]
-    );
 
     return (
         <>
