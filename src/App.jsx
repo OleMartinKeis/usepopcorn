@@ -17,7 +17,7 @@ export default function App() {
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
 
-    const { movies, error, isLoading } = useMovies(query, handleCloseMovie);
+    const { movies, error, isLoading } = useMovies(query);
 
     /* This gets the watched array from localstorage or creats an empty one if localstorage is empty */
     const [watched, setWatched] = useState(function () {

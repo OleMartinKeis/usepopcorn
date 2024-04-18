@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const KEY = "dfc8db77";
 
-function useMovies(query, callback) {
+function useMovies(query) {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
@@ -10,7 +10,7 @@ function useMovies(query, callback) {
     //Fetches API results by search filtering and takes the response in setMovies to display
     useEffect(
         function () {
-            callback?.();
+            // callback?.();
 
             const controller = new AbortController();
             async function fetchMovies() {
