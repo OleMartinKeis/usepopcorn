@@ -11,15 +11,13 @@ import Box from "./components/main/left";
 import Loader from "./components/loader";
 import ErrorMesage from "./components/error";
 import SelectMovie from "./components/main/selectMovie";
-
-const KEY = "dfc8db77";
+import useMovies from "./useMovies";
 
 export default function App() {
-    const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
     const [query, setQuery] = useState("");
     const [selectedId, setSelectedId] = useState(null);
+
+    const { movies, error, isLoading } = useMovies(query, handleCloseMovie);
 
     /* This gets the watched array from localstorage or creats an empty one if localstorage is empty */
     const [watched, setWatched] = useState(function () {
@@ -48,61 +46,6 @@ export default function App() {
             localStorage.setItem("watched", JSON.stringify(watched));
         },
         [watched]
-    );
-
-    //Fetches API results by search filtering and takes the response in setMovies to display
-    useEffect(
-        function () {
-            const controller = new AbortController();
-            async function fetchMovies() {
-                try {
-                    //Added a loading state in case of slow network
-                    setIsLoading(true);
-                    /*Resets Error everytime we type in new search */
-                    setError("");
-                    const res = await fetch(
-                        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-                        { signal: controller.signal }
-                    );
-                    //if response is not OK throw error
-                    if (!res.ok)
-                        throw new Error(
-                            "Something went wrong with fetching movies"
-                        );
-
-                    const data = await res.json();
-                    //if Response come back with a False string, throw error
-                    if (data.Response === "False")
-                        throw new Error("Movie not found");
-                    setMovies(data.Search);
-                    setError("");
-                } catch (err) {
-                    console.error(err.message);
-                    if (err.name !== "AbortError") {
-                        setError(err.message);
-                    }
-                } finally {
-                    setIsLoading(false);
-                }
-            }
-
-            /* if less than three characters in the search field, dont search */
-            if (query.length <= 3) {
-                setMovies([]);
-
-                setError("");
-                return;
-            }
-
-            handleCloseMovie();
-            fetchMovies();
-            /*Everytime there is a new fetch request our keypress will cancel it until the last keypress  */
-            return function () {
-                controller.abort();
-            };
-        },
-        /* Query as a dependency for the useEffect */
-        [query]
     );
 
     return (
