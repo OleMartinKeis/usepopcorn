@@ -1,27 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useCloseMovie } from "../../../useCloseMovie";
 
 function Search({ query, setQuery }) {
     const inputEl = useRef(null);
+    useCloseMovie("Enter", function () {
+        /*This makes sure you dont delete the text you have already startet on with enter, if your searchbar is in focus*/
+        if (document.activeElement === inputEl.current) return;
 
-    /*When we launch the app, you already start in the search bar */
-    useEffect(
-        function () {
-            /*Lets you remove all text in the search field with enter. Also lets you press enter anywhere in the app and take you back to the search field and clears it*/
-            function callback(e) {
-                /*This makes sure you dont delete the text you have already startet on with enter, if your searchbar is in focus*/
-                if (document.activeElement === inputEl.current) return;
-
-                if (e.code === "Enter") {
-                    inputEl.current.focus();
-                    setQuery("");
-                }
-            }
-
-            document.addEventListener("keydown", callback);
-            return () => document.addEventListener("keydown", callback);
-        },
-        [setQuery]
-    );
+        /*When we launch the app, you already start in the search bar */
+        inputEl.current.focus();
+        setQuery("");
+    });
 
     return (
         <div>
