@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "../rating";
 import Loader from "../../loader";
+import { useCloseMovie } from "../../../useCloseMovie";
 
 function SelectMovie({ selectedId, onAddWatched, onCloseMovie, watched }) {
     const [movie, setMovie] = useState({});
@@ -56,20 +57,7 @@ function SelectMovie({ selectedId, onAddWatched, onCloseMovie, watched }) {
         onCloseMovie(onCloseMovie);
     }
     /*Listens for a esc btn down, then closes selected movie. Also removes the Event listener after execution for memory performance */
-    useEffect(
-        function () {
-            function callback(e) {
-                if (e.code === "Escape") {
-                    onCloseMovie();
-                }
-            }
-            document.addEventListener("keydown", callback);
-            return function () {
-                document.removeEventListener("keydown", callback);
-            };
-        },
-        [onCloseMovie]
-    );
+    useCloseMovie("Escape", onCloseMovie);
 
     /*API call to get movies based on ID. Runs each time the component renders */
     useEffect(
