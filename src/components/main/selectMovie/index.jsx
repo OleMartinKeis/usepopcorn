@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StarRating from "../rating";
 import Loader from "../../loader";
 
-function SelectMovie({
-    selectedId,
-    setSelectedId,
-    onAddWatched,
-    onCloseMovie,
-    watched,
-}) {
+function SelectMovie({ selectedId, onAddWatched, onCloseMovie, watched }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [userRating, setUserRating] = useState("");
+
+    const countRef = useRef(0);
+    /* Adds an effect to keep count of the times a user has rated movies. */
+    useEffect(
+        function () {
+            if (userRating) countRef.current++;
+        },
+        [userRating]
+    );
+
     const KEY = "dfc8db77";
     const {
         imdbID,
@@ -42,6 +46,7 @@ function SelectMovie({
             imdbRating: Number(imdbRating),
             runtime: Number(runtime.split(" ")[0]),
             userRating,
+            countRatingDecisions: countRef.current,
         };
         onAddWatched(newWatchedMovie);
         onCloseMovie();
