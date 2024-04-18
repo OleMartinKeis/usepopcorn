@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function Search({ query, setQuery }) {
+    const inputEl = useRef(null);
+
+    /*When we launch the app, you already start in the search bar */
+    useEffect(function () {
+        inputEl.current.focus();
+    }, []);
+
     return (
         <div>
             <input
@@ -9,6 +16,7 @@ function Search({ query, setQuery }) {
                 placeholder="Search movies..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                ref={inputEl}
             />
         </div>
     );
