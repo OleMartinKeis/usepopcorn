@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "../rating";
 import Loader from "../../loader";
 
@@ -18,7 +18,6 @@ function SelectMovie({ selectedId, onAddWatched, onCloseMovie, watched }) {
 
     const KEY = "dfc8db77";
     const {
-        imdbID,
         Title: title,
         Year: year,
         Poster: poster,
